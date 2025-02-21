@@ -1,0 +1,19 @@
+@mixin font_m {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+@mixin font_l {
+  font-size: 36px;
+  line-height: 42px;
+}
+
+@mixin font_subtitle {
+  font-size: 32px;
+  line-height: 32px;
+}
+
+@mixin font_title {
+  font-size: 190px;
+  line-height: 170px;
+}

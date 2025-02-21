@@ -1,0 +1,51 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import { routes } from '@/router/routes'
+import { Paths } from '@/router/types'
+import LogoIcon from '@/assets/icons/logo.svg?component'
+</script>
+
+<template>
+  <header class="header">
+    <RouterLink :to="Paths.Home"><LogoIcon /></RouterLink>
+    <nav class="nav-links">
+      <RouterLink
+        v-for="route in routes"
+        :key="route.name"
+        :to="route.path"
+        class="nav-links__link"
+        active-class="nav-links__link_active"
+      >
+        {{ route.name }}
+      </RouterLink>
+    </nav>
+  </header>
+</template>
+
+<style scoped lang="scss">
+.header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+
+    &__link {
+      font-family: 'BebasNeue';
+      @include font_m;
+      color: $primary-text;
+
+      &:hover {
+        color: $light;
+      }
+      &_active {
+        color: $light;
+      }
+    }
+  }
+}
+</style>
