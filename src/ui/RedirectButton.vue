@@ -4,19 +4,19 @@ interface Props {
   text: string
 }
 import type { Paths } from '@/router/types'
-import { RouterLink } from 'vue-router'
 import RightArrow from '@assets/icons/rightArrow.svg?component'
+import NavLink from './NavLink.vue'
 
 const { link, text } = defineProps<Props>()
 </script>
 
 <template>
-  <RouterLink :to="link">
+  <NavLink :to="link">
     <div class="wrapper">
       <button class="button">{{ text }}</button>
       <RightArrow class="icon" />
     </div>
-  </RouterLink>
+  </NavLink>
 </template>
 
 <style scoped lang="scss">

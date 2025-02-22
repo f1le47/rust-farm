@@ -4,19 +4,18 @@ import { Paths } from '@/router/types'
 import RedirectButton from '@/ui/RedirectButton.vue'
 import ContainerUI from '@/ui/ContainerUI.vue'
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue'
-import type { VisitedPagesProvider } from '@/App.vue'
+import { Providers } from '@/providers/types'
+import type { IsPageTransit } from '@/providers/isPageTransit/isPageTransit'
 
 const { t } = useTranslation()
+const { isPageTransit } = inject(Providers.IsPageTransit) as IsPageTransit
 
-const { visitedPages, addVisitedPage } = inject<VisitedPagesProvider>("visitedPages") as VisitedPagesProvider
-const animationQueue = ref<string[]>(visitedPages.value.includes(Paths.Home) ? [] : ['titles', 'button'])
+const animationQueue = ref<string[]>(['titles', 'button'])
 
 const titlesAppearence = computed(() => !(animationQueue.value.includes('titles')))
 const buttonAppearence = computed(() => !(animationQueue.value.includes('button')))
 
 onMounted(() => {
-  if (!visitedPages.value.includes(Paths.Home)) addVisitedPage(Paths.Home)
-
   setTimeout(() => {
     if (animationQueue.value.length > 0) {
       animationQueue.value.shift()
@@ -43,15 +42,15 @@ onMounted(() => {
     <ContainerUI>
       <div class="page-container">
         <div class="titles">
-          <h1 class="title" :class="{ 'appearence-titles': titlesAppearence }">{{ t('home.title') }}</h1>
-          <p class="subtitle" :class="{ 'appearence-titles': titlesAppearence }">{{ t('home.subtitle') }}</p>
+          <h1 class="title" :class="{ 'appearence-titles': titlesAppearence, 'transtition-titles': isPageTransit }">{{ t('home.title') }}</h1>
+          <p class="subtitle" :class="{ 'appearence-titles': titlesAppearence, 'transtition-titles': isPageTransit }">{{ t('home.subtitle') }}</p>
         </div>
         <div class="button">
           <RedirectButton
             :link="Paths.Genetics"
             :text="t('home.to genetics')"
             class="redirect-button"
-            :class="{ 'appearence-button': buttonAppearence }"
+            :class="{ 'appearence-button': buttonAppearence, 'transition-button': isPageTransit }"
           />
         </div>
       </div>
@@ -97,6 +96,10 @@ onMounted(() => {
       .appearence-titles {
         transform: translateX(0);
       }
+
+      .transtition-titles {
+        transform: translateX(-100%);
+      }
     }
 
     .button {
@@ -112,6 +115,10 @@ onMounted(() => {
 
       .appearence-button {
         top: 0;
+      }
+
+      .transition-button {
+        top: 100%;
       }
     }
   }
