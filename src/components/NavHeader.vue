@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { routes } from '@/router/routes'
 import { Paths } from '@/router/types'
 import LogoIcon from '@/assets/icons/logo.svg?component'
 import { useTranslation } from 'i18next-vue';
+import NavLink from '@/ui/NavLink.vue';
 
 const t = useTranslation().t
 </script>
 
 <template>
   <header class="header">
-    <RouterLink :to="Paths.Home"><LogoIcon /></RouterLink>
+    <NavLink :to="Paths.Home"><LogoIcon /></NavLink>
     <nav class="nav-links">
-      <RouterLink
+      <NavLink
         v-for="route in routes"
         :key="route.name"
         :to="route.path"
@@ -20,7 +20,7 @@ const t = useTranslation().t
         active-class="nav-links__link_active"
       >
         {{ t("navbar." + route.name) }}
-      </RouterLink>
+      </NavLink>
     </nav>
   </header>
 </template>
