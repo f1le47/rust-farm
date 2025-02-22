@@ -1,3 +1,7 @@
+* {
+  color: $primary-text;
+}
+
 h1,
 h2,
 h3,
@@ -15,4 +19,8 @@ a {
 
 a {
   text-decoration: none;
+}
+
+body {
+  background-color: $dark;
 }

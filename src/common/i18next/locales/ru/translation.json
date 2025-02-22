@@ -1,7 +1,18 @@
 {
+  "navbar": {
+    "Home": "Главная",
+    "Genetics": "Генетика"
+  },
   "home": {
     "title": "Rust farm",
     "subtitle": "Оптимизируй свой фарм, покори мир Rust",
     "to genetics": "К генетике"
+  },
+  "genetics": {
+    "genetics": "Генетика",
+    "desired genetics": "Желаемая генетика",
+    "enter gen": "Ввести ген",
+    "You haven't added any gens yet": "Вы пока не добавили гены",
+    "your gens": "Ваши гены"
   }
 }

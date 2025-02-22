@@ -1,7 +1,18 @@
 {
+  "navbar": {
+    "Home": "Home",
+    "Genetics": "Genetics"
+  },
   "home": {
     "title": "Rust farm",
     "subtitle": "Optimize your farm, conquer the world of Rust",
     "to genetics": "To genetics"
+  },
+  "genetics": {
+    "genetics": "Genetics",
+    "desired genetics": "Desired genetics",
+    "enter gen": "Enter gen",
+    "You haven't added any gens yet": "You haven't added any gens yet",
+    "your gens": "Your gens"
   }
 }

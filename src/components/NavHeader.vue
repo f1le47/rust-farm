@@ -3,6 +3,9 @@ import { RouterLink } from 'vue-router'
 import { routes } from '@/router/routes'
 import { Paths } from '@/router/types'
 import LogoIcon from '@/assets/icons/logo.svg?component'
+import { useTranslation } from 'i18next-vue';
+
+const t = useTranslation().t
 </script>
 
 <template>
@@ -16,7 +19,7 @@ import LogoIcon from '@/assets/icons/logo.svg?component'
         class="nav-links__link"
         active-class="nav-links__link_active"
       >
-        {{ route.name }}
+        {{ t("navbar." + route.name) }}
       </RouterLink>
     </nav>
   </header>
@@ -24,7 +27,7 @@ import LogoIcon from '@/assets/icons/logo.svg?component'
 
 <style scoped lang="scss">
 .header {
-  padding: 16px;
+  padding: 16px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,6 +41,7 @@ import LogoIcon from '@/assets/icons/logo.svg?component'
       font-family: 'BebasNeue';
       @include font_m;
       color: $primary-text;
+      transition: color .3s ease;
 
       &:hover {
         color: $light;

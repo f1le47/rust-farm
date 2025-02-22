@@ -11,6 +11,7 @@
       "@common/*": ["./src/common/*"],
       "@ui/*": ["./src/ui/*"],
       "@components/*": ["./src/components/*"],
+      "@stores/*": ["./src/stores/*"],
       "@views/*": ["./src/views/*"]
     }
   }

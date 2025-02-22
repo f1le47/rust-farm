@@ -21,11 +21,12 @@ const { link, text } = defineProps<Props>()
 
 <style scoped lang="scss">
 .wrapper {
-  position: relative;
   padding: 8px 16px;
+  position: relative;
   width: fit-content;
   display: flex;
   align-items: center;
+  column-gap: 8px;
   background-color: $primary;
   overflow: hidden;
   &:after {
@@ -42,6 +43,7 @@ const { link, text } = defineProps<Props>()
   }
 
   .button {
+    padding: 0;
     font-family: 'BebasNeue';
     @include font_l;
     color: $primary-text;
