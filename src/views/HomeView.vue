@@ -3,8 +3,39 @@ import { useTranslation } from 'i18next-vue'
 import { Paths } from '@/router/types'
 import RedirectButton from '@/ui/RedirectButton.vue'
 import ContainerUI from '@/ui/ContainerUI.vue'
+import { computed, inject, onMounted, onUnmounted, ref } from 'vue'
+import type { VisitedPagesProvider } from '@/App.vue'
 
 const { t } = useTranslation()
+
+const { visitedPages, addVisitedPage } = inject<VisitedPagesProvider>("visitedPages") as VisitedPagesProvider
+const animationQueue = ref<string[]>(visitedPages.value.includes(Paths.Home) ? [] : ['titles', 'button'])
+
+const titlesAppearence = computed(() => !(animationQueue.value.includes('titles')))
+const buttonAppearence = computed(() => !(animationQueue.value.includes('button')))
+
+onMounted(() => {
+  if (!visitedPages.value.includes(Paths.Home)) addVisitedPage(Paths.Home)
+
+  setTimeout(() => {
+    if (animationQueue.value.length > 0) {
+      animationQueue.value.shift()
+    }
+  }, 0)
+
+  const intervalId = setInterval(() => {
+    if (animationQueue.value.length > 0) {
+      animationQueue.value.shift()
+    } else {
+      clearInterval(intervalId)
+    }
+  }, 800)
+
+  onUnmounted(() => {
+    clearInterval(intervalId)
+  })
+})
+
 </script>
 
 <template>
@@ -12,14 +43,17 @@ const { t } = useTranslation()
     <ContainerUI>
       <div class="page-container">
         <div class="titles">
-          <h1 class="title">{{ t('home.title') }}</h1>
-          <p class="subtitle">{{ t('home.subtitle') }}</p>
+          <h1 class="title" :class="{ 'appearence-titles': titlesAppearence }">{{ t('home.title') }}</h1>
+          <p class="subtitle" :class="{ 'appearence-titles': titlesAppearence }">{{ t('home.subtitle') }}</p>
         </div>
-        <RedirectButton
-          :link="Paths.Genetics"
-          :text="t('home.to genetics')"
-          class="redirect-button"
-        />
+        <div class="button">
+          <RedirectButton
+            :link="Paths.Genetics"
+            :text="t('home.to genetics')"
+            class="redirect-button"
+            :class="{ 'appearence-button': buttonAppearence }"
+          />
+        </div>
       </div>
     </ContainerUI>
   </main>
@@ -31,19 +65,22 @@ const { t } = useTranslation()
   min-height: 100vh;
 
   .page-container {
-    padding-left: 16px;
     display: flex;
     flex-direction: column;
     height: calc(100vh - $header_height);
     justify-content: center;
 
     .titles {
+      position: relative;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
 
       .title {
         @include font_title;
         color: $primary-text;
+        transform: translateX(-100%);
+        transition: transform .5s ease-out;
       }
 
       .subtitle {
@@ -52,12 +89,29 @@ const { t } = useTranslation()
         font-weight: 300;
         color: $primary-text;
         white-space: pre-line;
+        transform: translateX(-100%);
+        transition: transform .8s ease-out;
+      }
+
+      .appearence-titles {
+        transform: translateX(0);
       }
     }
 
-    .redirect-button {
+    .button {
       position: relative;
       top: 120px;
+      overflow: hidden;
+
+      .redirect-button {
+        position: relative;
+        top: 100%;
+        transition: top .3s ease;
+      }
+
+      .appearence-button {
+        top: 0;
+      }
     }
   }
 }

@@ -12,6 +12,7 @@ import NavHeader from '@components/NavHeader.vue'
 <style scoped lang="scss">
 .container {
   margin: 0 auto;
+  padding: 0 16px;
   max-width: 1440px;
 }
 </style>
