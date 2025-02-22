@@ -67,6 +67,7 @@ onMounted(() => {
   .page-container {
     display: flex;
     flex-direction: column;
+    align-items: start;
     height: calc(100vh - $header_height);
     justify-content: center;
 

@@ -1,7 +1,11 @@
 {
+  "common": {
+    "page under construction": "Страница в разработке"
+  },
   "navbar": {
     "Home": "Главная",
-    "Genetics": "Генетика"
+    "Genetics": "Генетика",
+    "Raids": "Рейды"
   },
   "home": {
     "title": "Rust farm",
@@ -14,5 +18,8 @@
     "enter gen": "Ввести ген",
     "You haven't added any gens yet": "Вы пока не добавили гены",
     "your gens": "Ваши гены"
+  },
+  "raids": {
+    "raids": "Рейды"
   }
 }

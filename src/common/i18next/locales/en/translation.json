@@ -1,7 +1,11 @@
 {
+  "common": {
+    "page under construction": "Page under construction"
+  },
   "navbar": {
     "Home": "Home",
-    "Genetics": "Genetics"
+    "Genetics": "Genetics",
+    "Raids": "Raids"
   },
   "home": {
     "title": "Rust farm",
@@ -14,5 +18,8 @@
     "enter gen": "Enter gen",
     "You haven't added any gens yet": "You haven't added any gens yet",
     "your gens": "Your gens"
+  },
+  "raids": {
+    "raids": "Raids"
   }
 }
